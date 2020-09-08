@@ -1,8 +1,11 @@
 // define new variable that stores user input
-let userPlay = window.prompt('please enter your play');
+let input = window.prompt('please enter your play');
+
+// make case insensitive
+let userPlay = input.toLowerCase();
+
 
 // computer randomly generates a value in order to makes its play from predefined options
-
 
   let plays = ['rock', 'paper', 'scissors'];
   let randomNum = Math.floor(Math.random() * 3);
@@ -33,5 +36,7 @@ if (userPlay === computerShoot) {
   } 
 
 }, delay);
+
+
 
 
