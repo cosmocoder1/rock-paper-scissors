@@ -1,47 +1,70 @@
 // define new variable that stores user input
-let input = window.prompt('please enter your play');
 
-// make case insensitive
-let userPlay = input.toLowerCase();
+let userPlay = prompt('Make your play!').toLowerCase();
 
+/*
+const getUserPlay = (input) => {
+  let userPlay = input.toLowerCase();
+  return userPlay;
+}
+*/
 
 // computer randomly generates a value in order to makes its play from predefined options
 
-function computerPlay () {
+const getComputerPlay = () => {
   let plays = ['rock', 'paper', 'scissors'];
   let randomNum = Math.floor(Math.random() * 3);
-  let computerShoot = plays[randomNum];
-  return computerShoot;
+  let computerPlay = plays[randomNum];
+  return computerPlay;
 }
 
-console.log(computerPlay());
-  
 
 //game on!
 
-function gameOn (userPlay, computerShoot) {
+const gameRound = () => {
 
-var delay = 1000;
-setTimeout(function() {
+  
+  let computerPlay = getComputerPlay();
 
-if (userPlay === computerShoot) {
-    alert('its a tie!')
-  } else if (userPlay === "scissors" && computerShoot === "rock" ) {
-    alert('the computer crushed your scissors')
-  } else if (userPlay === "scissors" && computerShoot === "paper" ) {
-    alert('you cut the computer\'s paper!')
-  } else if (userPlay === "paper" && computerShoot === "rock" ) {
-    alert('you wrapped the computer\'s rock!')
-  } else if (userPlay === "paper" && computerShoot === "scissors" ) {
-    alert('the computer cut your paper!')
-  } else if (userPlay === "rock" && computerShoot === "scissors" ) {
-    alert('you crushed the computer\'s scissors!')
-  } else if (userPlay === "rock" && computerShoot === "paper" ) {
-    alert('the computer wrapped your rock!')
+if (userPlay === computerPlay) {
+    return 'its a tie!';
+  } else if (userPlay === "scissors" && computerPlay === "rock" ) {
+    return 'the computer crushed your scissors';
+  } else if (userPlay === "scissors" && computerPlay === "paper" ) {
+    return 'you cut the computer\'s paper!';
+  } else if (userPlay === "paper" && computerPlay === "rock" ) {
+    return 'you wrapped the computer\'s rock!';
+  } else if (userPlay === "paper" && computerPlay === "scissors" ) {
+    return 'the computer cut your paper!';
+  } else if (userPlay === "rock" && computerPlay === "scissors" ) {
+    return 'you crushed the computer\'s scissors!';
+  } else if (userPlay === "rock" && computerPlay === "paper" ) {
+    return 'the computer wrapped your rock!';
   } 
 
-}, delay);
+}
 
+console.log(gameRound());
+
+const gameOn = () => {
+
+  let computerScore = 0;
+  let userScore = 0;
+
+  for (let i = 0; i < 6; i++) {
+           if (gameRound() === 'the computer crushed your scissors') {
+      computerScore += 1;
+    } else if (gameRound() === 'you cut the computer\'s paper!') {
+        userScore += 1;
+    } else if (gameRound() === 'you wrapped the computer\'s rock!') {
+        userScore += 1;
+    } else if (gameRound() === 'the computer cut your paper!') {
+        computerScore += 1;
+    } else if (gameRound() === 'you crushed the computer\'s scissors!') {
+        userScore += 1;
+    } else if (gameRound() === 'the computer wrapped your rock!') {
+        computerScore += 1;
+    }
 
 
 
