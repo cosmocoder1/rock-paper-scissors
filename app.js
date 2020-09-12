@@ -7,16 +7,21 @@ let userPlay = input.toLowerCase();
 
 // computer randomly generates a value in order to makes its play from predefined options
 
+function computerPlay () {
   let plays = ['rock', 'paper', 'scissors'];
   let randomNum = Math.floor(Math.random() * 3);
   let computerShoot = plays[randomNum];
+  return computerShoot;
+}
+
+console.log(computerPlay());
   
 
 //game on!
 
+function gameOn (userPlay, computerShoot) {
 
 var delay = 1000;
-
 setTimeout(function() {
 
 if (userPlay === computerShoot) {
