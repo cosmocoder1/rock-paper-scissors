@@ -85,8 +85,30 @@ const postResult = (input) => {
   }
 }
 
+// hide middle graphic onclick
+
 const hideMiddle = () => {
   middle.style.display = 'none';
+}
+
+// show userPlay's image onclick
+
+const showUserPlay = (play) => {
+  let userPlayImg = document.querySelector('#userPlay');
+  userPlay.style.background = `/images.${play}.png`;
+  userPlayImg.classList.add('.userPlayImg');  
+}
+
+// show computerPlay's image onclick
+
+const showComputerPlay = () => {
+
+}
+
+// show score result with text 
+
+const showResult = () => {
+
 }
 
 // define buttons
@@ -96,29 +118,39 @@ let rockBtn = document.querySelector('#rock');
 let paperBtn = document.querySelector('#paper');
 let scissorsBtn = document.querySelector('#scissors');
 
+
 // add events to buttons
 
 rockBtn.addEventListener('click', () => {  
 
-    gameRound(rock);
-    postResult(rock);
+    gameRound('rock');
+    postResult('rock');
     hideMiddle();
+    showUserPlay('rock');
+    showComputerPlay();
+    showResult();
   }
 );
 
 paperBtn.addEventListener('click', () => {
 
-    gameRound(paper);
-    postResult(paper);
+    gameRound('paper');
+    postResult('paper');
     hideMiddle();
+    showUserPlay('paper');
+    showComputerPlay();
+    showResult();
   }
 );
 
 scissorsBtn.addEventListener('click', () => {
 
-    gameRound(scissors);
-    postResult(scissors);
+    gameRound('scissors');
+    postResult('scissors');
     hideMiddle();
+    showUserPlay('scissors');
+    showComputerPlay();
+    showResult();
   }
 );
 

@@ -8,7 +8,8 @@ body {
 }
 
 .headerImg {
-  width: 40%;
+  width: 30%;
+  max-width: 300px;
   height: auto;
   display: block;
   margin: 0 auto;
@@ -40,10 +41,12 @@ h2        {
 #paper,
 #scissors {
   font-family: "Kumbh Sans";
+  font-size: 18px;
   padding-top: 2px;
   transition-duration: .2s;
   border-radius: 5px;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, .3);
+  padding: 10px;
 }
 
 #rock:hover {
@@ -52,7 +55,7 @@ h2        {
   border-radius: 5px;
 }
 #paper:hover {
-  background: rgba(250, 250, 0, .8);
+  background: rgba(250, 230, 0, 1);
   transform: scale(1.1);
   border-radius: 5px;
 }
@@ -65,10 +68,57 @@ h2        {
 
 #rock{
   margin-left: 100px;
-  margin-right: 10px;
+  margin-right: 40px;
 }
 
 #scissors {
   margin-right: 100px;
-  margin-left: 10px;
+  margin-left: 40px;
 }
+
+
+.userPlayImg {
+  
+}
+
+
+
+@media only screen and (max-width: 600px) {
+  
+  #rock,
+  #paper,
+  #scissors {
+    font-size: 18px;
+    padding-top: 2px;
+    padding: 5px;
+  }
+
+  
+  .buttons {
+    display: flex;
+    inline-size: 100px;
+    margin: 0 auto;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: 60px;
+  }
+  
+  #rock{
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  
+  #scissors {
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-top: 30px;
+  }
+
+  #paper {
+    margin-top: 30px;
+  }
+
+}
+
+
+
