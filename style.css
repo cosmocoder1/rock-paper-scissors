@@ -44,6 +44,7 @@ h2        {
   font-size: 18px;
   padding-top: 2px;
   transition-duration: .2s;
+  border: 3px solid rgba(0, 0, 0, .4);
   border-radius: 5px;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, .3);
   padding: 10px;
@@ -60,7 +61,7 @@ h2        {
   border-radius: 5px;
 }
 #scissors:hover {
-  background: rgba(0, 180, 240, .5);
+  background: rgba(0, 200, 240, .6);
   transform: scale(1.1);
   border-radius: 5px;
 } 
@@ -76,11 +77,22 @@ h2        {
   margin-left: 40px;
 }
 
-
-.userPlayImg {
-  
+.computerPlay {
+  display: inline-block;
+  width: 20%;
+  height: auto;
 }
 
+.userPlay {
+  display: inline-block;
+  width: 20%;
+  height: auto;
+}
+
+#result {
+  display: none;
+  
+}
 
 
 @media only screen and (max-width: 600px) {

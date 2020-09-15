@@ -15,7 +15,7 @@ const getComputerPlay = () => {
 let computerScore = 0;
 let userScore = 0;
 let winnerToggle = 0;
-
+let computerPlay = getComputerPlay();
 
 
 //game on!
@@ -23,7 +23,6 @@ let winnerToggle = 0;
 const gameRound = (play) => {
   
   let userPlay = play;
-  let computerPlay = getComputerPlay();
 
 if (userPlay === computerPlay) {
     winnerToggle = 0;
@@ -31,32 +30,26 @@ if (userPlay === computerPlay) {
   } else if (userPlay === "scissors" && computerPlay === "rock" ) {
     winnerToggle = -1;
     computerScore += 1;
-    return (`${computerPlay} beats ${userPlay}`);
 
   } else if (userPlay === "scissors" && computerPlay === "paper" ) {
     winnerToggle = 1;
     userScore += 1;
-    return (`${userPlay} beats ${computerPlay}`);
 
   } else if (userPlay === "paper" && computerPlay === "rock" ) {
     winnerToggle = 1;
     userScore += 1;
-    return (`${userPlay} beats ${computerPlay}`);
 
   } else if (userPlay === "paper" && computerPlay === "scissors" ) {
     winnerToggle = -1;
     computerScore += 1;
-    return (`${computerPlay} beats ${userPlay}`);
 
   } else if (userPlay === "rock" && computerPlay === "scissors" ) {
     winnerToggle = 1;
     userScore += 1;
-    return (`${userPlay} beats ${computerPlay}`);
 
   } else if (userPlay === "rock" && computerPlay === "paper" ) {
     winnerToggle = -1;
     computerScore += 1;
-    return (`${computerPlay} beats ${userPlay}`);
   } 
 }
 
@@ -78,10 +71,13 @@ const keepScore = () => {
 const postResult = (input) => {
   
     if (winnerToggle === 1) {
-      return `${input} beats ${computerPlay}... you win!`;
+      let result = document.querySelector('#result');
+      result.innerHTML = `${input} beats ${computerPlay}... you win!`;
+      
     } else if (winnerToggle === -1) {
-      return `${computerPlay} beats ${input}... you lose!`;
-    } else {return `It's a tie... ${input} and ${computerPlay}`;
+      result.innerHTML = `${computerPlay} beats ${input}... you lose!`;
+
+    } else {result.innerHTML = `It's a tie... ${input} and ${computerPlay}`;
   }
 }
 
@@ -94,21 +90,22 @@ const hideMiddle = () => {
 // show userPlay's image onclick
 
 const showUserPlay = (play) => {
-  let userPlayImg = document.querySelector('#userPlay');
-  userPlay.style.background = `/images.${play}.png`;
-  userPlayImg.classList.add('.userPlayImg');  
+  let userPlayImg = document.querySelector('.userPlay');
+  userPlayImg.src = `/images/${play}.png`;
+  
 }
 
 // show computerPlay's image onclick
 
 const showComputerPlay = () => {
-
+  let computerPlayImg = document.querySelector('.computerPlay');
+  computerPlayImg.src = `/images/${computerPlay}.png`;
 }
 
 // show score result with text 
 
 const showResult = () => {
-
+  result.style.display = 'block';
 }
 
 // define buttons
@@ -122,7 +119,7 @@ let scissorsBtn = document.querySelector('#scissors');
 // add events to buttons
 
 rockBtn.addEventListener('click', () => {  
-
+    getComputerPlay();
     gameRound('rock');
     postResult('rock');
     hideMiddle();
@@ -133,7 +130,7 @@ rockBtn.addEventListener('click', () => {
 );
 
 paperBtn.addEventListener('click', () => {
-
+    getComputerPlay();
     gameRound('paper');
     postResult('paper');
     hideMiddle();
@@ -144,7 +141,7 @@ paperBtn.addEventListener('click', () => {
 );
 
 scissorsBtn.addEventListener('click', () => {
-
+    getComputerPlay();
     gameRound('scissors');
     postResult('scissors');
     hideMiddle();
@@ -174,8 +171,7 @@ const gameOn = () => {
 }
 */
 
-console.log(gameOn());
-console.log(keepScore());
+
 
 
 
