@@ -20,9 +20,9 @@ let winnerToggle = 0;
 
 //game on!
 
-const gameRound = () => {
+const gameRound = (play) => {
   
-  let userPlay = prompt('Make your play').toLowerCase();
+  let userPlay = play;
   let computerPlay = getComputerPlay();
 
 if (userPlay === computerPlay) {
@@ -31,32 +31,32 @@ if (userPlay === computerPlay) {
   } else if (userPlay === "scissors" && computerPlay === "rock" ) {
     winnerToggle = -1;
     computerScore += 1;
-    console.log(`${computerPlay} beats ${userPlay}`);
+    return (`${computerPlay} beats ${userPlay}`);
 
   } else if (userPlay === "scissors" && computerPlay === "paper" ) {
     winnerToggle = 1;
     userScore += 1;
-    console.log(`${userPlay} beats ${computerPlay}`);
+    return (`${userPlay} beats ${computerPlay}`);
 
   } else if (userPlay === "paper" && computerPlay === "rock" ) {
     winnerToggle = 1;
     userScore += 1;
-    console.log(`${userPlay} beats ${computerPlay}`);
+    return (`${userPlay} beats ${computerPlay}`);
 
   } else if (userPlay === "paper" && computerPlay === "scissors" ) {
     winnerToggle = -1;
     computerScore += 1;
-    console.log(`${computerPlay} beats ${userPlay}`);
+    return (`${computerPlay} beats ${userPlay}`);
 
   } else if (userPlay === "rock" && computerPlay === "scissors" ) {
     winnerToggle = 1;
     userScore += 1;
-    console.log(`${userPlay} beats ${computerPlay}`);
+    return (`${userPlay} beats ${computerPlay}`);
 
   } else if (userPlay === "rock" && computerPlay === "paper" ) {
     winnerToggle = -1;
     computerScore += 1;
-    console.log(`${computerPlay} beats ${userPlay}`);
+    return (`${computerPlay} beats ${userPlay}`);
   } 
 }
 
@@ -73,9 +73,61 @@ const keepScore = () => {
   }
 }
 
+// post result function
+
+const postResult = (input) => {
+  
+    if (winnerToggle === 1) {
+      return `${input} beats ${computerPlay}... you win!`;
+    } else if (winnerToggle === -1) {
+      return `${computerPlay} beats ${input}... you lose!`;
+    } else {return `It's a tie... ${input} and ${computerPlay}`;
+  }
+}
+
+const hideMiddle = () => {
+  middle.style.display = 'none';
+}
+
+// define buttons
+
+let middle = document.querySelector('#middle');
+let rockBtn = document.querySelector('#rock');
+let paperBtn = document.querySelector('#paper');
+let scissorsBtn = document.querySelector('#scissors');
+
+// add events to buttons
+
+rockBtn.addEventListener('click', () => {  
+
+    gameRound(rock);
+    postResult(rock);
+    hideMiddle();
+  }
+);
+
+paperBtn.addEventListener('click', () => {
+
+    gameRound(paper);
+    postResult(paper);
+    hideMiddle();
+  }
+);
+
+scissorsBtn.addEventListener('click', () => {
+
+    gameRound(scissors);
+    postResult(scissors);
+    hideMiddle();
+  }
+);
+
+
+
+
 
 // 5 game sequence function
-
+/*
 const gameOn = () => {
   for (let i = 0; i < 6; i++) {
     gameRound();
@@ -88,8 +140,7 @@ const gameOn = () => {
     console.log(`User: ${userScore} Computer: ${computerScore}`);
   }
 }
-
-
+*/
 
 console.log(gameOn());
 console.log(keepScore());
