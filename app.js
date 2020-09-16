@@ -9,9 +9,7 @@ const getComputerPlay = () => {
 }
 
 
-
 // define new variables that store scores and winner status for final display
-
 
 var computerPlay = getComputerPlay();
 var winnerToggle = 0;
@@ -44,12 +42,16 @@ if (userPlay === computerPlay) {
   } else if (userPlay === "rock" && computerPlay === "paper" ) {
     winnerToggle = -1;
   }
- 
 }
 
 
+// applause function 
 
-
+const audioResponse = (sound) => {
+  var path = "audio/";
+  var snd = new Audio(path + sound + ".wav");
+  snd.play();
+}
 
 
 // post result function
@@ -59,6 +61,7 @@ const postResult = (input) => {
     if (winnerToggle === 1) {
       let result = document.querySelector('#result');
       result.innerHTML = `${input} beats ${computerPlay}... you win!`;
+      audioResponse('applause');
       
     } else if (winnerToggle === -1) {
       result.innerHTML = `${computerPlay} beats ${input}... you lose!`;
