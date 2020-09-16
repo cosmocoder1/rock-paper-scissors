@@ -13,9 +13,7 @@ const getComputerPlay = () => {
 // define new variables that store scores and winner status for final display
 
 
-let computerScore = 0;
 let userScore = 0;
-let winnerToggle = 0;
 let computerPlay = getComputerPlay();
 
 
@@ -23,7 +21,7 @@ let computerPlay = getComputerPlay();
 
 const gameRound = (play, computerPlay) => {
 
-
+  let winnerToggle = 0;
   let userPlay = play;
 
 if (userPlay === computerPlay) {
@@ -31,30 +29,25 @@ if (userPlay === computerPlay) {
 
   } else if (userPlay === "scissors" && computerPlay === "rock" ) {
     winnerToggle = -1;
-    computerScore += 1;
 
   } else if (userPlay === "scissors" && computerPlay === "paper" ) {
     winnerToggle = 1;
-    userScore += 1;
-
+    
   } else if (userPlay === "paper" && computerPlay === "rock" ) {
     winnerToggle = 1;
-    userScore += 1;
 
   } else if (userPlay === "paper" && computerPlay === "scissors" ) {
     winnerToggle = -1;
-    computerScore += 1;
 
   } else if (userPlay === "rock" && computerPlay === "scissors" ) {
     winnerToggle = 1;
-    userScore += 1;
 
   } else if (userPlay === "rock" && computerPlay === "paper" ) {
     winnerToggle = -1;
-    computerScore += 1;
-  } 
+  }
   return winnerToggle;
 }
+
 
 /*
 // score keeping function w/ outputs
@@ -73,12 +66,12 @@ const keepScore = () => {
 // post result function
 
 const postResult = (input) => {
-  
-    if (gameRound() === 1) {
+    let winnerToggle = gameRound();
+    if (winnerToggle === 1) {
       let result = document.querySelector('#result');
       result.innerHTML = `${input} beats ${computerPlay}... you win!`;
       
-    } else if (gameRound() === -1) {
+    } else if (winnerToggle === -1) {
       result.innerHTML = `${computerPlay} beats ${input}... you lose!`;
 
     } else {result.innerHTML = `It's a tie... ${input} and ${computerPlay}`;
