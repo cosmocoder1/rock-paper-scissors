@@ -12,6 +12,7 @@ const getComputerPlay = () => {
 
 // define new variables that store scores and winner status for final display
 
+
 let computerScore = 0;
 let userScore = 0;
 let winnerToggle = 0;
@@ -20,8 +21,9 @@ let computerPlay = getComputerPlay();
 
 //game on!
 
-const gameRound = (play) => {
-  
+const gameRound = (play, computerPlay) => {
+
+
   let userPlay = play;
 
 if (userPlay === computerPlay) {
@@ -51,9 +53,10 @@ if (userPlay === computerPlay) {
     winnerToggle = -1;
     computerScore += 1;
   } 
+  return winnerToggle;
 }
 
-
+/*
 // score keeping function w/ outputs
 
 const keepScore = () => {
@@ -65,16 +68,17 @@ const keepScore = () => {
     return `0 - 0`;
   }
 }
+*/
 
 // post result function
 
 const postResult = (input) => {
   
-    if (winnerToggle === 1) {
+    if (gameRound() === 1) {
       let result = document.querySelector('#result');
       result.innerHTML = `${input} beats ${computerPlay}... you win!`;
       
-    } else if (winnerToggle === -1) {
+    } else if (gameRound() === -1) {
       result.innerHTML = `${computerPlay} beats ${input}... you lose!`;
 
     } else {result.innerHTML = `It's a tie... ${input} and ${computerPlay}`;
@@ -87,19 +91,22 @@ const hideMiddle = () => {
   middle.style.display = 'none';
 }
 
+const hideButtons = () => {
+  buttons.style.display = 'none';
+}
+
 // show userPlay's image onclick
 
 const showUserPlay = (play) => {
   let userPlayImg = document.querySelector('.userPlay');
-  userPlayImg.src = `/images/${play}.png`;
-  
+  userPlayImg.src = `/images/${play}U.png`;
 }
 
 // show computerPlay's image onclick
 
 const showComputerPlay = () => {
   let computerPlayImg = document.querySelector('.computerPlay');
-  computerPlayImg.src = `/images/${computerPlay}.png`;
+  computerPlayImg.src = `/images/${computerPlay}C.png`;
 }
 
 // show score result with text 
@@ -110,44 +117,62 @@ const showResult = () => {
 
 // define buttons
 
+let buttons = document.querySelector('.buttons');
 let middle = document.querySelector('#middle');
 let rockBtn = document.querySelector('#rock');
 let paperBtn = document.querySelector('#paper');
 let scissorsBtn = document.querySelector('#scissors');
 
+// reload page
+
+const reload = () => {
+  document.location.reload();
+}
+
+const refresh = () => {
+  setTimeout(reload, 3000);
+
+}
 
 // add events to buttons
 
 rockBtn.addEventListener('click', () => {  
+    
     getComputerPlay();
     gameRound('rock');
     postResult('rock');
     hideMiddle();
+    hideButtons();
     showUserPlay('rock');
     showComputerPlay();
     showResult();
+    refresh();
   }
 );
 
 paperBtn.addEventListener('click', () => {
-    getComputerPlay();
+    
     gameRound('paper');
     postResult('paper');
     hideMiddle();
+    hideButtons();
     showUserPlay('paper');
     showComputerPlay();
     showResult();
+    refresh();
   }
 );
 
 scissorsBtn.addEventListener('click', () => {
-    getComputerPlay();
+    
     gameRound('scissors');
     postResult('scissors');
     hideMiddle();
+    hideButtons();
     showUserPlay('scissors');
     showComputerPlay();
     showResult();
+    refresh();
   }
 );
 
