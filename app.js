@@ -13,15 +13,14 @@ const getComputerPlay = () => {
 // define new variables that store scores and winner status for final display
 
 
-let userScore = 0;
-let computerPlay = getComputerPlay();
+var computerPlay = getComputerPlay();
+var winnerToggle = 0;
 
 
 //game on!
 
 const gameRound = (play, computerPlay) => {
 
-  let winnerToggle = 0;
   let userPlay = play;
 
 if (userPlay === computerPlay) {
@@ -45,28 +44,18 @@ if (userPlay === computerPlay) {
   } else if (userPlay === "rock" && computerPlay === "paper" ) {
     winnerToggle = -1;
   }
-  return winnerToggle;
+ 
 }
 
 
-/*
-// score keeping function w/ outputs
 
-const keepScore = () => {
-  if (computerScore > userScore) {
-    return `The computer beat you! ${computerScore} to ${userScore}!`
-  } else if (computerScore < userScore) { 
-    return `You beat the computer! ${userScore} to ${computerScore}`
-  } else { 
-    return `0 - 0`;
-  }
-}
-*/
+
+
 
 // post result function
 
 const postResult = (input) => {
-    let winnerToggle = gameRound();
+    
     if (winnerToggle === 1) {
       let result = document.querySelector('#result');
       result.innerHTML = `${input} beats ${computerPlay}... you win!`;
@@ -131,8 +120,7 @@ const refresh = () => {
 
 rockBtn.addEventListener('click', () => {  
     
-    getComputerPlay();
-    gameRound('rock');
+    gameRound('rock', computerPlay);
     postResult('rock');
     hideMiddle();
     hideButtons();
@@ -145,7 +133,7 @@ rockBtn.addEventListener('click', () => {
 
 paperBtn.addEventListener('click', () => {
     
-    gameRound('paper');
+    gameRound('paper', computerPlay);
     postResult('paper');
     hideMiddle();
     hideButtons();
@@ -158,7 +146,7 @@ paperBtn.addEventListener('click', () => {
 
 scissorsBtn.addEventListener('click', () => {
     
-    gameRound('scissors');
+    gameRound('scissors', computerPlay);
     postResult('scissors');
     hideMiddle();
     hideButtons();
