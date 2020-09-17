@@ -1,4 +1,3 @@
-
 // computer randomly generates a value in order to makes its play from predefined options
 
 const getComputerPlay = () => {
@@ -13,6 +12,9 @@ const getComputerPlay = () => {
 
 var computerPlay = getComputerPlay();
 var winnerToggle = 0;
+var userScore = 0;
+var computerScore = 0;
+
 
 
 //game on!
@@ -70,40 +72,68 @@ const postResult = (input) => {
   }
 }
 
-// hide middle graphic onclick
+
+
+// hide/show middle graphic onclick
 
 const hideMiddle = () => {
   middle.style.display = 'none';
+  score.style.display = 'none';
+  setTimeout(function(){middle.style.display = 'block';score.style.display = "block"}, 3000);
 }
+
+// hide/show score
+
+
+const scoreKeep = () => {
+  if (winnerToggle === 1) {
+    userScore += 1;
+  } else if (winnerToggle === -1) {
+    computerScore += 1;
+  } 
+  score.innerHTML = `you : ${userScore} \u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0 computer : ${computerScore}`;
+}
+
+
+// hide/show buttons
 
 const hideButtons = () => {
   buttons.style.display = 'none';
+  setTimeout(function(){buttons.style.display = 'flex'}, 3000);
 }
 
-// show userPlay's image onclick
+
+// show/hide userPlay's image onclick
 
 const showUserPlay = (play) => {
   let userPlayImg = document.querySelector('.userPlay');
   userPlayImg.src = `/images/${play}U.png`;
+  setTimeout(function(){userPlayImg.style.display = 'none'}, 3000);
 }
 
-// show computerPlay's image onclick
+
+// show/hide computerPlay's image onclick
 
 const showComputerPlay = () => {
   let computerPlayImg = document.querySelector('.computerPlay');
   computerPlayImg.src = `/images/${computerPlay}C.png`;
+  setTimeout(function(){computerPlayImg.style.display = 'none'}, 3000);
 }
 
-// show score result with text 
+
+// show/hide score result with text 
 
 const showResult = () => {
   result.style.display = 'block';
+  setTimeout(function(){result.style.display = 'none'}, 3000);
 }
+
 
 // define buttons
 
 let buttons = document.querySelector('.buttons');
-let middle = document.querySelector('#middle');
+let middle = document.querySelector('.middle');
+let score = document.querySelector('#score');
 let rockBtn = document.querySelector('#rock');
 let paperBtn = document.querySelector('#paper');
 let scissorsBtn = document.querySelector('#scissors');
@@ -116,6 +146,7 @@ const reload = () => {
 
 const refresh = () => {
   setTimeout(reload, 3000);
+  console.log(userScore);
 
 }
 
@@ -124,48 +155,62 @@ const refresh = () => {
 rockBtn.addEventListener('click', () => {  
     
     gameRound('rock', computerPlay);
+    /*
+    scoreKeep();
+    */
     postResult('rock');
     hideMiddle();
     hideButtons();
+
     showUserPlay('rock');
     showComputerPlay();
     showResult();
-    refresh();
+
   }
 );
 
 paperBtn.addEventListener('click', () => {
     
     gameRound('paper', computerPlay);
+    /*
+    scoreKeep();
+    */
     postResult('paper');
     hideMiddle();
     hideButtons();
+
     showUserPlay('paper');
     showComputerPlay();
     showResult();
-    refresh();
   }
 );
 
 scissorsBtn.addEventListener('click', () => {
     
     gameRound('scissors', computerPlay);
+    /*
+    scoreKeep();
+    */
     postResult('scissors');
     hideMiddle();
     hideButtons();
+
     showUserPlay('scissors');
     showComputerPlay();
     showResult();
+
+    /*
     refresh();
+    */
   }
 );
 
 
 
-/*
+
 
 // 5 game sequence function
-
+/*
 const gameOn = () => {
   for (let i = 0; i < 6; i++) {
     gameRound();
@@ -180,7 +225,6 @@ const gameOn = () => {
 }
 
 */
-
 
 
 

@@ -28,10 +28,13 @@ h1 {
 }
 
 #middle,
+#score,
 h2        {
   padding-top: 90px;
   display: block;
 }
+
+
 
 .buttons {
   display: flex;
