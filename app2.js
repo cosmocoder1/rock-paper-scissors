@@ -1,26 +1,24 @@
+// define new variables that store scores and winner status for final display
+
+var computerPlay;
+var winnerToggle = 0;
+var userScore = 0;
+var computerScore = 0;
+
 // computer randomly generates a value in order to makes its play from predefined options
 
 const getComputerPlay = () => {
   let plays = ['rock', 'paper', 'scissors'];
   let randomNum = Math.floor(Math.random() * 3);
-  let computerPlay = plays[randomNum];
-  return computerPlay;
+  computerPlay = plays[randomNum];
 }
-
-
-// define new variables that store scores and winner status for final display
-
-var computerPlay = getComputerPlay();
-var winnerToggle = 0;
-var userScore = 0;
-var computerScore = 0;
-
 
 
 //game on!
 
 const gameRound = (play, computerPlay) => {
 
+  
   let userPlay = play;
 
 if (userPlay === computerPlay) {
@@ -73,7 +71,6 @@ const postResult = (input) => {
 }
 
 
-
 // hide/show middle graphic onclick
 
 const hideMiddle = () => {
@@ -108,7 +105,7 @@ const hideButtons = () => {
 const showUserPlay = (play) => {
   let userPlayImg = document.querySelector('.userPlay');
   userPlayImg.src = `/images/${play}U.png`;
-  setTimeout(function(){userPlayImg.style.display = 'none'}, 3000);
+  setTimeout(function(){userPlayImg.src = ''}, 3000);
 }
 
 
@@ -117,7 +114,7 @@ const showUserPlay = (play) => {
 const showComputerPlay = () => {
   let computerPlayImg = document.querySelector('.computerPlay');
   computerPlayImg.src = `/images/${computerPlay}C.png`;
-  setTimeout(function(){computerPlayImg.style.display = 'none'}, 3000);
+  setTimeout(function(){computerPlayImg.src = ''}, 3000);
 }
 
 
@@ -134,6 +131,7 @@ const showResult = () => {
 let buttons = document.querySelector('.buttons');
 let middle = document.querySelector('.middle');
 let score = document.querySelector('#score');
+let game = document.querySelector('#gameOutcome');
 let rockBtn = document.querySelector('#rock');
 let paperBtn = document.querySelector('#paper');
 let scissorsBtn = document.querySelector('#scissors');
@@ -145,60 +143,66 @@ const reload = () => {
 }
 
 const refresh = () => {
-  setTimeout(reload, 3000);
-  console.log(userScore);
-
+    if (computerScore === 3 || userScore === 3) {
+      setTimeout(function () {
+        if (userScore > computerScore) {
+          game.innerHTML = "you're the winner!"
+        } else if (userScore < computerScore) {
+          game.innerHTML = 'the computer is the winner...'
+        }
+      }, 1000);
+    }
+    setTimeout(reload, 3000);
 }
 
 // add events to buttons
 
 rockBtn.addEventListener('click', () => {  
     
+  
+    getComputerPlay();
     gameRound('rock', computerPlay);
-    /*
     scoreKeep();
-    */
     postResult('rock');
     hideMiddle();
     hideButtons();
-
     showUserPlay('rock');
     showComputerPlay();
     showResult();
-
+    /*
+    refresh();
+    */
   }
 );
 
 paperBtn.addEventListener('click', () => {
     
+    getComputerPlay();
     gameRound('paper', computerPlay);
-    /*
     scoreKeep();
-    */
     postResult('paper');
     hideMiddle();
     hideButtons();
-
     showUserPlay('paper');
     showComputerPlay();
     showResult();
+    /*
+    refresh();
+    */
   }
 );
 
 scissorsBtn.addEventListener('click', () => {
     
+    getComputerPlay();
     gameRound('scissors', computerPlay);
-    /*
     scoreKeep();
-    */
     postResult('scissors');
     hideMiddle();
     hideButtons();
-
     showUserPlay('scissors');
     showComputerPlay();
     showResult();
-
     /*
     refresh();
     */
