@@ -138,11 +138,8 @@ let scissorsBtn = document.querySelector('#scissors');
 
 // reload page
 
-const reload = () => {
-  document.location.reload();
-}
-
-const refresh = () => {
+const gameResult = () => {
+  setTimeout(function () {
     if (computerScore === 3 || userScore === 3) {
       setTimeout(function () {
         if (userScore > computerScore) {
@@ -150,9 +147,19 @@ const refresh = () => {
         } else if (userScore < computerScore) {
           game.innerHTML = 'the computer is the winner...'
         }
-      }, 1000);
-    }
-    setTimeout(reload, 3000);
+    });
+  }
+}, 3000);
+}
+
+// reload page
+
+const reload = () => {
+  if (computerScore === 3 || userScore === 3) {
+    setTimeout(function () {
+      document.location.reload();
+    }, 6000);
+  }
 }
 
 // add events to buttons
@@ -169,9 +176,9 @@ rockBtn.addEventListener('click', () => {
     showUserPlay('rock');
     showComputerPlay();
     showResult();
-    /*
-    refresh();
-    */
+    gameResult();
+    reload();
+    
   }
 );
 
@@ -186,9 +193,8 @@ paperBtn.addEventListener('click', () => {
     showUserPlay('paper');
     showComputerPlay();
     showResult();
-    /*
-    refresh();
-    */
+    gameResult();
+    reload();
   }
 );
 
@@ -203,9 +209,8 @@ scissorsBtn.addEventListener('click', () => {
     showUserPlay('scissors');
     showComputerPlay();
     showResult();
-    /*
-    refresh();
-    */
+    gameResult();
+    reload();
   }
 );
 
