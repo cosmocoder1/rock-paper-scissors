@@ -2,7 +2,6 @@ body {
   font-family: "Kumbh Sans";
 }
 
-
 .header {
   text-align: center;
 }
@@ -14,10 +13,6 @@ body {
   display: block;
   margin: 0 auto;
   padding-top: 40px;
-}
-
-h1 {
-  
 }
 
 #results {
@@ -34,8 +29,6 @@ h2        {
   display: block;
 }
 
-
-
 .buttons {
   display: flex;
   justify-content: space-around;
@@ -48,7 +41,6 @@ h2        {
 #scissors:focus {
   outline: 0;
 }
-
 
 #rock,
 #paper,
@@ -70,19 +62,20 @@ h2        {
   transform: scale(1.1);
   border-radius: 9px;
 }
+
 #paper:hover {
   background: rgba(250, 230, 0, 1);
   color: rgba(80, 80, 0, .9);
   transform: scale(1.1);
   border-radius: 9px;
 }
+
 #scissors:hover {
   background: rgba(0, 200, 240, .6);
   color: rgba(0, 30, 100, .9);
   transform: scale(1.1);
   border-radius: 9px;
 } 
-
 
 #rock{
   margin-left: 100px;
@@ -111,7 +104,6 @@ h2        {
   
 }
 
-
 @media only screen and (max-width: 600px) {
   
   #rock,
@@ -123,7 +115,6 @@ h2        {
     border-radius: 9px;
   }
 
-  
   .buttons {
     display: flex;
     inline-size: 100px;
